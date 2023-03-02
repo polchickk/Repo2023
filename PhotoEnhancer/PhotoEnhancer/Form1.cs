@@ -101,5 +101,10 @@ namespace PhotoEnhancer
             resultBmp = newBmp;
             resultPictureBox.Image = resultBmp;
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

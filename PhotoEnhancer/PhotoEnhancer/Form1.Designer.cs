@@ -91,6 +91,7 @@ namespace PhotoEnhancer
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "PhotoEnhancer";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.originalPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.resultPictureBox)).EndInit();
             this.ResumeLayout(false);
