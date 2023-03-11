@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace PhotoEnhancer
 {
-    class Pixel
+    public class Pixel
     {
         private double r;
-        public double R 
+        public double R
         {
-            get => r; //{return r;}
+            get => r;
             set => r = CheckValue(value);
         }
 
         private double g;
         public double G
         {
-            get => g; 
+            get => g;
             set => g = CheckValue(value);
         }
 
@@ -29,13 +29,21 @@ namespace PhotoEnhancer
             set => b = CheckValue(value);
         }
 
+        public Pixel(double red, double green, double blue)
+        {
+            R = red;
+            G = green;
+            B = blue;
+        }
+
+        public Pixel() : this(0, 0, 0) { }
+
         private double CheckValue(double val)
         {
             if (val < 0 || val > 1)
-                throw new ArgumentException("Невернойне значение яркости канала!");
+                throw new ArgumentException("Неверное значение яркости канала");
 
             return val;
         }
-        
     }
 }
