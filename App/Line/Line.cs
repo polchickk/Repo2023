@@ -4,10 +4,10 @@ namespace App.Line;
 
 public partial struct Line
 {
-    private static readonly Regex expressionTemplate = ExpressionRegex();
+    private static readonly Regex expressionTemplate = new Regex(@"y = (?<A>[0-9]+[,.]?[0-9]*)x (?<B>[+-].[0-9]+[,.]?[0-9]*)", RegexOptions.Compiled);
     public double A { get; set; }
     public double B { get; set; }
-    public double AngelInDegrees { get; init; }
+    public double AngelInDegrees { get; init; } // возвращает только в методе
 
     public Line(double a, double b)
     {
@@ -18,10 +18,10 @@ public partial struct Line
 
     public Line(string expression)
     {
-        var match = expressionTemplate.Match(expression);
+        var match = expressionTemplate.Match(expression); //соответствие выражению
         if (!match.Success)
-            throw new ArgumentException("The expression has an invalid format.");
-        A = double.Parse(match.Groups["A"].Value);
+            throw new ArgumentException("Введен неправильный формат!");
+        A = double.Parse(match.Groups["A"].Value); //выбирает из группы предложенных вариантов
         B = double.Parse(match.Groups["B"].Value.Replace(" ", ""));
         AngelInDegrees = Math.Atan(A) * 180 / Math.PI;
     }
@@ -39,11 +39,18 @@ public partial struct Line
 
     public static Line operator ~(Line line)
     {
-        if (DoubleComparer.Equals(line.A, 0))
-            throw new ArgumentException("The line doesn't have any orthogonal line.");
+        if (DoubleComparer.Equals(line.A, 0)) // параллельно х
+            throw new ArgumentException("Нет перпендикулярных прямых");
         return new Line( - 1 / line.A, line.B);
     }
 
-    [GeneratedRegex("y = (?<A>[0-9]+[,.]?[0-9]*)x (?<B>[+-].[0-9]+[,.]?[0-9]*)", RegexOptions.Compiled)]
-    private static partial Regex ExpressionRegex();
+    public static bool operator ==(Line left, Line right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Line left, Line right)
+    {
+        return !(left == right);
+    }
 }

@@ -50,4 +50,14 @@ public class Tests
         var line = new Line(input);
         Assert.That(line.ToString(), Is.EqualTo(input));
     }
+
+    [Test]
+    public void ToStringTest2()
+    {
+        var (a, b) = (2, 4.5);
+        var line = new Line(a, b);
+        var realOrthogonal = ~line;
+        var expected = new Line(-0.5, 4.5);
+        Assert.That(realOrthogonal, Is.EqualTo(expected));
+    }
 }
