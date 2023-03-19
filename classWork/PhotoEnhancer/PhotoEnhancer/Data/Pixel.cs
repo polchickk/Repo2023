@@ -64,5 +64,16 @@ namespace PhotoEnhancer
 
             return lightness;
         }
+
+        public static Pixel operator ~(Pixel p)
+        {
+            Pixel result = new Pixel();
+
+            result.r = 1 - p.r;
+            result.g = 1 - p.g;
+            result.b = 1 - p.b;
+
+            return result;
+        }
     }
 }
