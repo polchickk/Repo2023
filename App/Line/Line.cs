@@ -7,7 +7,7 @@ public partial struct Line
     private static readonly Regex expressionTemplate = new Regex(@"y = (?<A>[0-9]+[,.]?[0-9]*)x (?<B>[+-].[0-9]+[,.]?[0-9]*)", RegexOptions.Compiled);
     public double A { get; set; }
     public double B { get; set; }
-    public double AngelInDegrees { get; init; } // возвращает только в методе
+    public double AngelInDegrees { get; init; } // init возвращает только в методе
 
     public Line(double a, double b)
     {
