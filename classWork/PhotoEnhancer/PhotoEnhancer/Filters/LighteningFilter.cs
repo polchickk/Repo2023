@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhotoEnhancer.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,24 +9,11 @@ namespace PhotoEnhancer
 {
     public class LighteningFilter : PixelFilter
     {
-        public override ParameterInfo[] GetParametersInfo()
-        {
-            return new[]
-            {
-                new ParameterInfo()
-                {
-                    Name = "Коэффициент",
-                    MinValue = 0,
-                    MaxValue = 10,
-                    DefaultValue = 1,
-                    Increment = 0.05
-                }
-            };
-        }
+        public LighteningFilter() : base(new LighteningParameters()) { }
 
-        public override Pixel ProcessPixel(Pixel pixel, double[] parameters)
+        public override Pixel ProcessPixel(Pixel pixel, IParameters parameters)
         {
-            return pixel * parameters[0];
+            return pixel * (parameters as LighteningParameters).Coefficient;
         }
 
         public override string ToString()

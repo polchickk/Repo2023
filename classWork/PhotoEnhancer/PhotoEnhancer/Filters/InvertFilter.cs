@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhotoEnhancer.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,10 @@ namespace PhotoEnhancer
 {
     public class InvertFilter : PixelFilter
     {
-        public override ParameterInfo[] GetParametersInfo()
-        {
-            return new ParameterInfo[0];
-        }
+        public InvertFilter() : base(new InvertParameters()) { }
+ 
 
-        public override Pixel ProcessPixel(Pixel pixel, double[] parameters)
+        public override Pixel ProcessPixel(Pixel pixel, IParameters parameters)
         {
             return ~pixel;
             
