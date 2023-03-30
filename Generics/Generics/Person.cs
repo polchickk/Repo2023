@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Generics
 {
     internal class Person<T>
+
     {
         public string Name { get; set; }    
 
