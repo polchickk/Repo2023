@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PhotoEnhancer.Filters
 {
-    internal class InvertParameters : IParameters
+    public class InvertParameters : IParameters
     {
         public ParameterInfo[] GetDecription() => new ParameterInfo[0];
 

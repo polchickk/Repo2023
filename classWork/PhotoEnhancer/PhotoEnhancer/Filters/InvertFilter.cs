@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace PhotoEnhancer
 {
-    public class InvertFilter : PixelFilter
+    public class InvertFilter : PixelFilter<InvertParameters>
     {
-        public InvertFilter() : base(new InvertParameters()) { }
- 
 
-        public override Pixel ProcessPixel(Pixel pixel, IParameters parameters)
+        public override Pixel ProcessPixel(Pixel pixel, InvertParameters parameters)
         {
             return ~pixel;
             
