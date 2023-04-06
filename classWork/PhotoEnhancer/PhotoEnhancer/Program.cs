@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhotoEnhancer.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,9 +20,19 @@ namespace PhotoEnhancer
 
             var mainForm = new MainForm();
 
-            mainForm.AddFilter(new LighteningFilter());
-            mainForm.AddFilter(new GrayScaleFilter());
-            mainForm.AddFilter(new InvertFilter());
+            mainForm.AddFilter(new PixelFilter<LighteningParameters>(
+                   "Осветление/затемнение",                  
+                   (Pixel pixel, LighteningParameters parameters) => pixel * parameters.Coefficient));
+            mainForm.AddFilter( new PixelFilter<EmptyParameters>(
+                "Оттенки серого",
+                (pixel, parameters)=>
+                {
+                    var lightness = 0.3 * pixel.R + 0.6 * pixel.G + 0.1 * pixel.B;
+                    return new Pixel(lightness, lightness, lightness);
+                }));
+            mainForm.AddFilter(new PixelFilter<InvertParameters>(
+                "Инверсия",
+                (Pixel pixel, InvertParameters parameters)=>~pixel));
 
             Application.Run(mainForm);
         }
