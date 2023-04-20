@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ocp", "ocp\ocp.csproj", "{5EDF1B53-F401-42F2-9F2B-83AB53C6066C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shapes.UnitTests", "Shapes.UnitTests\Shapes.UnitTests.csproj", "{BB35AFC4-AB19-401E-97B8-8104971A1306}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shapes.UnitTests", "Shapes.UnitTests\Shapes.UnitTests.csproj", "{BB35AFC4-AB19-401E-97B8-8104971A1306}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geometry", "Geometry\Geometry.csproj", "{8D867964-22A5-4391-BC9E-DE57016D8878}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{BB35AFC4-AB19-401E-97B8-8104971A1306}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB35AFC4-AB19-401E-97B8-8104971A1306}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB35AFC4-AB19-401E-97B8-8104971A1306}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D867964-22A5-4391-BC9E-DE57016D8878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D867964-22A5-4391-BC9E-DE57016D8878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D867964-22A5-4391-BC9E-DE57016D8878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D867964-22A5-4391-BC9E-DE57016D8878}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

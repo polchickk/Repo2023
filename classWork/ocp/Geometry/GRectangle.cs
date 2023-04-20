@@ -4,26 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ocp
+namespace Geometry
 {
-    public class Rectangle : Shape
+    public class GRectangle : IMeasuarable
     {
         public Point TopLeft { get; set; }
         public double Width { get; set; }
         public double Height { get; set; }
 
-        public override double Area => Width * Height;
+        public double Area => Width * Height;
 
-        public Rectangle(double x, double y, double width, double height)
+        public double Perimetr => 2 * (Width + Height);
+
+        public GRectangle(double x, double y, double width, double height)
         {
             TopLeft = new Point(x, y);
             Width = width;
             Height = height;
         }
 
-        public override void Draw()
+        public void Draw()
         {
             throw new NotImplementedException();
         }
+       
     }
 }

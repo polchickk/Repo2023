@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ocp
 {
-    public abstract class Shape
+    public interface IMeasuarable
     {
-        public abstract double Area { get; }
-        public abstract void Draw();
+        double Area { get; }
+        double Perimetr { get; }
     }
 }
