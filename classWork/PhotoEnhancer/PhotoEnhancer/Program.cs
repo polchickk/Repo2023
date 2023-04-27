@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Security.Cryptography;
+
 
 
 namespace PhotoEnhancer
@@ -39,15 +41,15 @@ namespace PhotoEnhancer
                 (Pixel pixel, InvertParameters parameters)=>~pixel));
 
             mainForm.AddFilter(new TransformFilter(
-                "Отражение по горизонтали", 
-                size=>size, 
-                (point,size)=>new Point(size.Width-point.X-1,point.Y)
+                "Отражение по горизонтали",
+                size => size,
+                (point, size) => new Point(size.Width - point.X - 1, point.Y)
                 ));
 
             mainForm.AddFilter(new TransformFilter(
                 "Поворот на 90 против часовой стрелки",
-                size => new Size(size.Height,size.Width),
-                (point,size)=>new Point(size.Width - point.Y - 1,point.X)
+                size => new Size(size.Height, size.Width),
+                (point, size) => new Point(size.Width - point.Y - 1, point.X)
                 ));
 
             mainForm.AddFilter(new TransformFilter(
@@ -55,6 +57,32 @@ namespace PhotoEnhancer
                size => new Size(size.Height, size.Width),
                (point, size) => new Point(point.Y, size.Height - point.X - 1)
                ));
+
+
+            Func<Point, Size, EmptyParameters, Point?> pointMosaic =
+                 (point, oldSize, parameters) =>
+                 {
+                     point=new Point(point.X, oldSize.Height - point.Y - 1);
+
+                     return point;
+                 };
+
+            Func<Size, EmptyParameters, Size> sizeMosaic = (size, parameters) =>
+            {
+                return new Size(size.Width, size.Height);
+            };
+
+            mainForm.AddFilter(new TransformFilter<RotationParameters>(
+                "Поворот на произвольный угол",
+               new RotateTransformer()
+                ));
+
+            //mainForm.AddFilter(new TransformFilter<EmptyParameters>(
+            //    "Отражение по горизонтали",
+            //    sizeMosaic,
+            //    pointMosaic
+            //    ));
+
             Application.Run(mainForm);
         }
     }
