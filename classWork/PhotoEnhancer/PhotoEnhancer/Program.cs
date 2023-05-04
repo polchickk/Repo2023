@@ -38,16 +38,11 @@ namespace PhotoEnhancer
                 (Pixel pixel, InvertParameters parameters)=>~pixel));
 
             mainForm.AddFilter(new TransformFilter(
-                "Отражение по горизонтали",
-                size => size,
-                (point, size) => new Point(size.Width - point.X - 1, point.Y)
-                ));
-
-            mainForm.AddFilter(new TransformFilter(
                 "Поворот на 90 против часовой стрелки",
                 size => new Size(size.Height, size.Width),
                 (point, size) => new Point(size.Width - point.Y - 1, point.X)
                 ));
+
 
             mainForm.AddFilter(new TransformFilter(
                "Поворот на 90 по часовой стрелки",
@@ -55,26 +50,66 @@ namespace PhotoEnhancer
                (point, size) => new Point(point.Y, size.Height - point.X - 1)
                ));
 
+            mainForm.AddFilter(new TransformFilter(
+              "Поворот на 180",
+              size => new Size(size.Width, size.Height),
+              (point, size) => new Point(size.Width- point.X-1, size.Height - point.Y - 1)
+              ));
 
-            Func<Point, Size, EmptyParameters, Point?> pointMosaic =
-                 (point, oldSize, parameters) =>
-                 {
-                     point=new Point(point.X, oldSize.Height - point.Y - 1);
+            mainForm.AddFilter(new TransformFilter(
+             "Поворот по вертикали",
+             size => new Size(size.Width, size.Height),
+             (point, size) => new Point (point.X,size.Height - point.Y - 1)
+             ));
 
-                     return point;
-                 };
+            mainForm.AddFilter(new TransformFilter(
+            "Зеркальное отражение относительно побочной диагонали",
+            size => new Size(size.Height, size.Width),
+            (point, size) => new Point(size.Width-1- point.Y,size.Height-1- point.X )
+            ));
 
-            Func<Size, EmptyParameters, Size> sizeMosaic = (size, parameters) =>
-            {
-                return new Size(size.Width, size.Height);
-            };
+            mainForm.AddFilter(new TransformFilter(
+           "Отражение относительно центра",
+           size => new Size(size.Width, size.Height),
+           (point, size) => new Point(size.Width - 1 - point.X, size.Height - 1 - point.Y)
+           ));
+
+            mainForm.AddFilter(new TransformFilter(
+            "Отражение относительно главной диагонали",
+            size => new Size(size.Height, size.Width),
+            (point, size) => new Point(point.Y, point.X)
+            ));
+
+            mainForm.AddFilter(new TransformFilter(
+               "Отражение по горизонтали",
+               size => new Size(size.Width, size.Height),
+               (point, size) => new Point(size.Width - point.X - 1, point.Y)
+               ));
+            //size.Width - point.X - 1, point.Y
+
+            //Func<Point, Size, EmptyParameters, Point> pointMosaic =
+            //     (point, oldSize, parameters) =>
+            //     {
+            //         point=new Point(point.X, oldSize.Height - point.Y - 1);
+
+            //         return point;
+            //     };
+
+            //Func<Size, EmptyParameters, Size> sizeMosaic = (size, parameters) =>
+            //{
+            //    return new Size(size.Width, size.Height);
+            //};
 
             mainForm.AddFilter(new TransformFilter<RotationParameters>(
                 "Поворот на произвольный угол",
                new RotateTransformer()
                 ));
 
-            //mainForm.AddFilter(new TransformFilter<EmptyParameters>(
+            mainForm.AddFilter(new TransformFilter<LeftParameters>(
+                "Скос влево",
+               new LeftTransformer()
+                ));
+            //mainForm.AddFilter(new TransformFilter(
             //    "Отражение по горизонтали",
             //    sizeMosaic,
             //    pointMosaic

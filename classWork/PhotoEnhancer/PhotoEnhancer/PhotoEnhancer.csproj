@@ -54,6 +54,8 @@
     <Compile Include="Filters\InvertParameters.cs" />
     <Compile Include="Filters\IParameters.cs" />
     <Compile Include="Filters\Transform\ITransformer.cs" />
+    <Compile Include="Filters\Transform\LeftParameters.cs" />
+    <Compile Include="Filters\Transform\LeftTransformer.cs" />
     <Compile Include="Filters\Transform\RotateTransformer.cs" />
     <Compile Include="Filters\Transform\RotationParameters.cs" />
     <Compile Include="Filters\LighteningParameters.cs" />
