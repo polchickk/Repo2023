@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace PhotoEnhancer
 {
     public class TransformFilter<TParameters> : ParametrizedFilter<TParameters>
-         where TParameters : IParameters, new()
+        where TParameters : IParameters, new()
     {
         ITransformer<TParameters> transformer;
 
@@ -23,6 +23,7 @@ namespace PhotoEnhancer
         {
             var oldSize = new Size(original.Width, original.Height);
             transformer.Initialize(oldSize, parameters);
+
             var result = new Photo(transformer.ResultSize.Width, transformer.ResultSize.Height);
 
             for (var x = 0; x < result.Width; x++)
