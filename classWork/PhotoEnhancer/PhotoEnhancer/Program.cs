@@ -87,7 +87,7 @@ namespace PhotoEnhancer
                ));
 
             mainForm.AddFilter(new TransformFilter(
-               "Отражение",
+               "Мозаика",
               size => new Size(size.Width * 2, size.Height * 2),
                (point, size) =>
                {
@@ -101,6 +101,7 @@ namespace PhotoEnhancer
                        return point = new Point(point.Y, point.X);
                }
                ));
+            
             mainForm.AddFilter(new TransformFilter(
                "Отражение",
               size => {
