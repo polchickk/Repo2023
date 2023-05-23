@@ -19,9 +19,9 @@ namespace PhotoEnhancer
             oldSize = size;
             angleInRadians = parameters.AngleInDegrees * Math.PI / 180;
             ResultSize = new Size(
-                     (int)(size.Width * Math.Cos(angleInRadians) +
+                     (int)(size.Width +
                     size.Height * Math.Sin(angleInRadians)),
-                     (int)Math.Sqrt(size.Height * size.Height + Math.Pow(size.Height * Math.Tan(angleInRadians), 2)));
+                     (int)(size.Height * Math.Cos(angleInRadians)));
         }
 
         public Point? MapPoint(Point point)
