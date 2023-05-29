@@ -86,47 +86,47 @@ namespace PhotoEnhancer
                (point, size) => new Point(size.Width - point.X - 1, point.Y)
                ));
 
+            mainForm.AddFilter(new TransformFilter(
+               "Мозаика",
+              size => new Size(size.Width + size.Width, size.Height + size.Height),
+               (point, size) =>
+               {
+                   if (point.X < size.Width * 0.5 && point.Y < size.Height * 0.5)
+                       return point = new Point(point.X, point.Y);
+                   else if (point.Y > size.Height * 0.5 && point.X < size.Width * 0.5)
+                       return point = new Point(size.Width - point.X - 1, point.Y);
+                   else if ((point.Y < size.Height * 0.5) && (point.X > size.Width * 0.5))
+                       return point = new Point(point.X, size.Height - point.Y - 1);
+                   else
+                       return point = new Point(point.Y, point.X);
+               }
+               ));
+
+
+            //Func<Point, Size, EmptyParameters, Point> pointMosaic =
+            //     (point, oldSize, parameters) =>
+            //     {
+            //         if (point.X < oldSize.Width * 0.5 && point.Y < oldSize.Height * 0.5)
+            //             return point = new Point(point.X, point.Y);
+            //         else if (point.Y > oldSize.Height * 0.5 && point.X < oldSize.Width * 0.5)
+            //             return point = new Point(oldSize.Width - point.X - 1, point.Y);
+            //         else if ((point.Y < oldSize.Height * 0.5) && (point.X > oldSize.Width * 0.5))
+            //             return point = new Point(point.X, oldSize.Height - point.Y - 1);
+            //         else
+            //             return point = new Point(point.Y, point.X);
+            //     };
+
+            //Func<Size, EmptyParameters, Size> sizeMosaic = (size, parameters) =>
+            //{
+            //    return new Size(size.Width*2, size.Height*2);
+            //};
             //mainForm.AddFilter(new TransformFilter(
-            //   "Мозаика",
-            //  size => new Size(size.Width * 2, size.Height * 2),
-            //   (point, size) =>
-            //   {
-            //       if (point.X < size.Width * 0.5 && point.Y < size.Height * 0.5)
-            //           return point = new Point(point.X, point.Y);
-            //       else if (point.Y > size.Height * 0.5 && point.X < size.Width * 0.5)
-            //           return point = new Point(size.Width - point.X - 1, point.Y);
-            //       else if ((point.Y < size.Height * 0.5) && (point.X > size.Width * 0.5))
-            //           return point = new Point(point.X, size.Height - point.Y - 1);
-            //       else
-            //           return point = new Point(point.Y, point.X);
-            //   }
-            //   ));
+            //    "Мозаика",
+            //    sizeMosaic,
+            //    pointMosaic
+            //    ));
 
-
-                   //Func<Point, Size, EmptyParameters, Point> pointMosaic =
-                   //     (point, oldSize, parameters) =>
-                   //     {
-                   //         if (point.X < oldSize.Width * 0.5 && point.Y < oldSize.Height * 0.5)
-                   //             return point = new Point(point.X, point.Y);
-                   //         else if (point.Y > oldSize.Height * 0.5 && point.X < oldSize.Width * 0.5)
-                   //             return point = new Point(oldSize.Width - point.X - 1, point.Y);
-                   //         else if ((point.Y < oldSize.Height * 0.5) && (point.X > oldSize.Width * 0.5))
-                   //             return point = new Point(point.X, oldSize.Height - point.Y - 1);
-                   //         else
-                   //             return point = new Point(point.Y, point.X);
-                   //     };
-
-                   //Func<Size, EmptyParameters, Size> sizeMosaic = (size, parameters) =>
-                   //{
-                   //    return new Size(size.Width*2, size.Height*2);
-                   //};
-                   //mainForm.AddFilter(new TransformFilter(
-                   //    "Мозаика",
-                   //    sizeMosaic,
-                   //    pointMosaic
-                   //    ));
-
-                   mainForm.AddFilter(new TransformFilter<RotationParameters>(
+            mainForm.AddFilter(new TransformFilter<RotationParameters>(
                 "Поворот на произвольный угол",
                new RotateTransformer()
                 ));
