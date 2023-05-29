@@ -86,32 +86,21 @@ namespace PhotoEnhancer
                (point, size) => new Point(size.Width - point.X - 1, point.Y)
                ));
 
-            mainForm.AddFilter(new TransformFilter(
-               "Мозаика",
-              size => new Size(size.Width * 2, size.Height * 2),
-               (point, size) =>
-               {
-                   if (point.X < size.Width * 0.5 && point.Y < size.Height * 0.5)
-                       return point = new Point(point.X, point.Y);
-                   else if (point.Y > size.Height * 0.5 && point.X < size.Width * 0.5)
-                       return point = new Point(size.Width - point.X - 1, point.Y);
-                   else if ((point.Y < size.Height * 0.5) && (point.X > size.Width * 0.5))
-                       return point = new Point(point.X, size.Height - point.Y - 1);
-                   else
-                       return point = new Point(point.Y, point.X);
-               }
-               ));
-            
-            mainForm.AddFilter(new TransformFilter(
-               "Отражение",
-              size => {
-                  if (size.Width > size.Height)
-                      return size = new Size(size.Height, size.Height);
-                  else 
-                      return size = new Size(size.Width, size.Width);
-                      },
-               (point, size) => new Point(point.X,point.Y)
-            ));
+            //mainForm.AddFilter(new TransformFilter(
+            //   "Мозаика",
+            //  size => new Size(size.Width * 2, size.Height * 2),
+            //   (point, size) =>
+            //   {
+            //       if (point.X < size.Width * 0.5 && point.Y < size.Height * 0.5)
+            //           return point = new Point(point.X, point.Y);
+            //       else if (point.Y > size.Height * 0.5 && point.X < size.Width * 0.5)
+            //           return point = new Point(size.Width - point.X - 1, point.Y);
+            //       else if ((point.Y < size.Height * 0.5) && (point.X > size.Width * 0.5))
+            //           return point = new Point(point.X, size.Height - point.Y - 1);
+            //       else
+            //           return point = new Point(point.Y, point.X);
+            //   }
+            //   ));
 
 
                    //Func<Point, Size, EmptyParameters, Point> pointMosaic =
@@ -132,7 +121,7 @@ namespace PhotoEnhancer
                    //    return new Size(size.Width*2, size.Height*2);
                    //};
                    //mainForm.AddFilter(new TransformFilter(
-                   //    "Отражение по горизонтали",
+                   //    "Мозаика",
                    //    sizeMosaic,
                    //    pointMosaic
                    //    ));
