@@ -87,20 +87,21 @@ namespace PhotoEnhancer
                ));
 
             mainForm.AddFilter(new TransformFilter(
-               "Мозаика",
-              size => new Size(size.Width *2, size.Height *2),
-               (point, size) =>
-               {
-                   if (point.X < size.Width * 0.5 && point.Y < size.Height * 0.5)
-                       return point = new Point(point.X, point.Y);
-                   else if (point.Y > size.Height * 0.5 && point.X < size.Width * 0.5)
-                       return point = new Point(size.Width - point.X - 1, point.Y);
-                   else if ((point.Y < size.Height * 0.5) && (point.X > size.Width * 0.5))
-                       return point = new Point(point.X, size.Height - point.Y - 1);
-                   else
-                       return point = new Point(point.Y, point.X);
-               }
-               ));
+                "Мозаика",
+                oldSize => new Size(oldSize.Width * 2, oldSize.Height * 2),
+                (newPoint, oldSize) =>
+                {
+                    if (newPoint.X < oldSize.Width && newPoint.Y < oldSize.Height)
+                        return newPoint = new Point(newPoint.X, newPoint.Y);
+                    else if (newPoint.Y >= oldSize.Height && newPoint.X < oldSize.Width)
+                        return newPoint = new Point(newPoint.X, 2 * oldSize.Height - newPoint.Y - 1);
+                    else if (newPoint.Y < oldSize.Height && newPoint.X >= oldSize.Width)
+                        return newPoint = new Point(2 * oldSize.Width - newPoint.X - 1, newPoint.Y);
+                    else
+                        return newPoint = new Point(2 * oldSize.Width - newPoint.X - 1, 2 * oldSize.Height - newPoint.Y - 1);
+                }
+                ));
+
 
             mainForm.AddFilter(new TransformFilter<RotationParameters>(
                 "Поворот на произвольный угол",
