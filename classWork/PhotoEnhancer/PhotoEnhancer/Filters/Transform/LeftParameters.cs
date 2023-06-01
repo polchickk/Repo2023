@@ -8,27 +8,12 @@ namespace PhotoEnhancer
 {
     public class LeftParameters:IParameters
     {
-        public double AngleInDegrees { get; set; }
-
-        public ParameterInfo[] GetDecription()
-        {
-            return new[]
-            {
-                new ParameterInfo()
-                {
-                    Name = "Угол в град",
+        [ParameterInfo(Name = "Угол в град",
                     MinValue = 0,
                     MaxValue = 85,
                     DefaultValue = 0,
-                    Increment = 5
-                }
-            };
+                    Increment = 5)]
+        public double AngleInDegrees { get; set; }
 
-        }
-
-        public void SetValues(double[] values)
-        {
-            AngleInDegrees = values[0];
-        }
     }
 }
