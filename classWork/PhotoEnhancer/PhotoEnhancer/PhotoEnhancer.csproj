@@ -55,6 +55,7 @@
     <Compile Include="Filters\Parameters\IParameters.cs" />
     <Compile Include="Filters\Parameters\IParametersHandler.cs" />
     <Compile Include="Filters\Parameters\SimpleParametersHandler.cs" />
+    <Compile Include="Filters\Parameters\StaticParametersHandler.cs" />
     <Compile Include="Filters\Transform\ITransformer.cs" />
     <Compile Include="Filters\Transform\LeftParameters.cs" />
     <Compile Include="Filters\Transform\LeftTransformer.cs" />

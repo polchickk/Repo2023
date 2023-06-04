@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace PhotoEnhancer
 {
     public interface IParametersHandler<TParameters>
-        where TParameters : IParameters,new()
+        where TParameters : IParameters, new()
     {
-        ParameterInfo[] GetDescription();
+        ParameterInfo[] GetDescriptions();
         TParameters CreateParameters(double[] values);
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoEnhancer.Filters
+namespace PhotoEnhancer
 {
     public class InvertParameters : IParameters { }
 }

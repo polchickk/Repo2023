@@ -4,13 +4,12 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace PhotoEnhancer
 {
     public class SimpleParametersHandler<TParameters> : IParametersHandler<TParameters>
-        where TParameters : IParameters,new()
+        where TParameters : IParameters, new()
     {
         public TParameters CreateParameters(double[] values)
         {
@@ -31,14 +30,13 @@ namespace PhotoEnhancer
             return parameters;
         }
 
-        public ParameterInfo[] GetDescription()=>
+        public ParameterInfo[] GetDescriptions() =>
             typeof(TParameters)
-            .GetProperties()
-            .Select(p => p.GetCustomAttributes<ParameterInfo>())
-            .Where(a => a.Count() > 0)
-            .SelectMany(a => a)
-            .Cast<ParameterInfo>()
-            .ToArray();
-
+                .GetProperties()
+                .Select(p => p.GetCustomAttributes<ParameterInfo>())
+                .Where(a => a.Count() > 0)
+                .SelectMany(a => a)
+                .Cast<ParameterInfo>()
+                .ToArray();
     }
 }

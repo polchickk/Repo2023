@@ -1,4 +1,4 @@
-﻿using PhotoEnhancer.Filters;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;

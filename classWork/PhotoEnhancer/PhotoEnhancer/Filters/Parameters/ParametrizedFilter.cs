@@ -1,4 +1,4 @@
-﻿using PhotoEnhancer.Filters;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace PhotoEnhancer
         protected string name;
 
         IParametersHandler<TParameters> handler=new SimpleParametersHandler<TParameters>();
-        public ParameterInfo[] GetParametersInfo() => handler.GetDescription();
+        public ParameterInfo[] GetParametersInfo() => handler.GetDescriptions();
 
         public Photo Process(Photo original, double[] values)
         {
