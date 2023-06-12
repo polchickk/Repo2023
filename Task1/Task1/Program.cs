@@ -10,25 +10,21 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            int[] array = { -5, 0, 15, 7, 25, 10, 91, 85 };
-            int index = 2;
+            int[] array = { -5, 0, 12, 7, 25, 10, 91, 8, 2026,161 };
 
-            static int[] GetPositiveOddTwoDigitNumbers(int[] array, int index) => array
-                .Skip(index)
-                .Where(n => n > 0 && n % 2 != 0 && n >= 10 && n <= 99)
-                .Distinct()
-                .OrderBy(n => n)
-                .ToArray();
-           
-            static void PrintIntArray(int[] numbers)
+             static int[] GetEvenDigitSumsDescending(int[] numbers)
             {
-                foreach (int i in numbers)
-                    Console.Write($"{i} ");
-
-                Console.WriteLine();
+                return numbers
+                    .Where(n => n > 0 && n % 2 == 0)
+                    .Select(n => n.ToString().Sum(c => c - '0'))
+                    .Distinct()
+                    .OrderByDescending(sum => sum)
+                    .ToArray();
             }
 
-            PrintIntArray(GetPositiveOddTwoDigitNumbers(array, index));
+            int[] evenDigitSums = GetEvenDigitSumsDescending(array);
+            Console.WriteLine(string.Join(", ", evenDigitSums));
+
             Console.ReadKey();
         }
     }
